@@ -1,5 +1,8 @@
 #!/bin/bash
 
+EMAIL='test'
+PASSWORD='test'
+
 API="${API_ORIGIN:-http://localhost:4741}"
 URL_PATH="/sign-up"
 curl "${API}${URL_PATH}" \
@@ -15,3 +18,6 @@ curl "${API}${URL_PATH}" \
   }'
 
 echo
+
+
+# bin/rails generate scaffold book title:string author:string notes:string next:boolean user:references
