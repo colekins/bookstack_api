@@ -1,82 +1,25 @@
-# rails-api-template
+# BookStack - A Book Collection App
 
-A template for starting projects with `rails-api`. Includes authentication.
+### [Live App](https://colekins.github.io/bookstack/) | [Deployed API](https://safe-peak-59079.herokuapp.com/) | [Client Repository](https://github.com/colekins/bookstack)
 
-At the beginning of each cohort, update the versions in [`Gemfile`](Gemfile).
+BookStack is an app for readers and bookworms! After signing up for an account, BookStack allows you to track your book collection and organize it with relevant information. For each entry, a user can store their rating and pertinent notes on the book. Users are also able to add the book to their 'Read Next' list, which makes it easy to keep track of what they plan on reading next. The app integrates with the [Google Books API](https://developers.google.com/books/) to dynamically populate book covers at user sign-in. Each book entry also provides external links to Amazon and Goodreads for the user's convenience. A powerful search function allows user to sift through their large collections.
 
-## Dependencies
+## Planning
 
-Install with `bundle install`.
+### User Stories
+- As a user, I’d like to be able to sign up with a new account.
+- As a user, I want to be able to login securely with a unique username.
+- As a user, I’d like to keep track of the books I want to read next.
+- As a user, I want to store relevant information about each book.
+- As a user, I’d like to see the book covers populate dynamically.
+- As a user, I'd like an easily accessible search function.
+- As a user, I'd like convenient dynamically populated links to external sites (Amazon, Goodreads)
 
--   [`rails-api`](https://github.com/rails-api/rails-api)
--   [`rails`](https://github.com/rails/rails)
--   [`active_model_serializers`](https://github.com/rails-api/active_model_serializers)
--   [`ruby`](https://www.ruby-lang.org/en/)
--   [`postgres`](http://www.postgresql.org)
+### Wireframes & ERD
 
-## Installation
-
-1.  [Download](../../archive/master.zip) this template.
-1.  Unzip and rename the template directory.
-1.  Empty [`README.md`](README.md) and fill with your own content.
-1.  Move into the new project and `git init`.
-1.  Install dependencies with `bundle install`.
-1.  Rename your app module in `config/application.rb` (change
-    `RailsApiTemplate`).
-1.  Rename your project database in `config/database.yml` (change
-    `'rails-api-template'`).
-1.  `git add` and `git commit` your changes.
-1.  Create a `.env` for sensitive settings (`touch .env`).
-1.  Generate new `development` and `test` secrets (`bundle exec rake secret`).
-1.  Store them in `.env` with keys `SECRET_KEY_BASE_<DEVELOPMENT|TEST>`
-    respectively.
-1.  In order to make requests to your deployed API, you will need to set
-    `SECRET_KEY_BASE` in the environment of the production API (using `heroku
-    config:set` or the Heroku dashboard).
-1.  In order to make requests from your deployed client application, you will
-    need to set `CLIENT_ORIGIN` in the environment of the production API (e.g.
-    `heroku config:set CLIENT_ORIGIN=Fhttps://<github-username>.github.io`).
-1.  Setup your database with:
-    - bin/rake db:drop (if it already exists)
-    - bin/rake db:create
-    - bin/rake db:migrate
-    - bin/rake db:seed
-    - bin/rake db:examples
-1.  Run the API server with `bin/rails server` or `bundle exec rails server`.
-
-## Structure
-
-This template follows the standard project structure in Rails.
-
-`curl` command scripts are stored in [`scripts`](scripts) with names that
-correspond to API actions.
-
-User authentication is built-in.
-
-## Tasks
-
-Developers should run these often!
-
--   `bin/rake routes` lists the endpoints available in your API.
--   `bin/rake test` runs automated tests.
--   `bin/rails console` opens a REPL that pre-loads the API.
--   `bin/rails db` opens your database client and loads the correct database.
--   `bin/rails server` starts the API.
--   `scripts/*.sh` run various `curl` commands to test the API. See below.
-
-<!-- TODO -   `rake nag` checks your code style. -->
-<!-- TODO -   `rake lint` checks your code for syntax errors. -->
-
-## API
-
-Use this as the basis for your own API documentation. Add a new third-level
-heading for your custom entities, and follow the pattern provided for the
-built-in user authentication documentation.
-
-Scripts are included in [`scripts`](scripts) to test built-in actions. Add your
-own scripts to test your custom API. As an alternative, you can write automated
-tests in RSpec to test your API.
-
+- [Wireframes](https://i.imgur.com/D1OEP71.jpg)
+- [Entity Relationship Diagram](https://i.imgur.com/esVvDpD.jpg)
+-
 ### Authentication
 
 | Verb   | URI Pattern            | Controller#Action |
@@ -85,6 +28,16 @@ tests in RSpec to test your API.
 | POST   | `/sign-in`             | `users#signin`    |
 | PATCH  | `/change-password/:id` | `users#changepw`  |
 | DELETE | `/sign-out/:id`        | `users#signout`   |
+
+### Books
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/books/`             | `books#create`   |
+| GET    | `/books/`             | `books#index`    |
+| PATCH  | `/books/:id`          | `books#update`   |
+| DELETE | `/books/:id`          | `books#destroy`  |
+
 
 #### POST /sign-up
 
